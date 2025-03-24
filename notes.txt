@@ -1,0 +1,7 @@
+venv\Scripts\activate
+
+python train.py to generate a new model
+
+python evaluate.py to evealue the saved model
+
+python predict.py /predictionimg/image.jpg to predict the new image
