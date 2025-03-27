@@ -1,7 +1,18 @@
 venv\Scripts\activate
 
+run img_converter.py to convert to original format
+
+run file_checker.py to check for corrupt images in the dataset
+
+run webp_to_png.py to convert webp files to png
+
+
 python train.py to generate a new model
 
 python evaluate.py to evealue the saved model
 
-python predict.py /predictionimg/image.jpg to predict the new image
+python predict.py predictionimg/image.jpg to predict the new image
+
+
+
+Latest prediction: dirty with 68.53% confidence

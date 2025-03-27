@@ -1,5 +1,5 @@
-# train.py
 import os
+import shutil  # For removing directories
 import tensorflow as tf
 from data_loader import load_datasets
 from model import create_model
@@ -9,10 +9,11 @@ def main():
     train_ds, val_ds, class_names = load_datasets()
     num_classes = len(class_names)
 
-    # Check if model already exists
+    # If a saved model already exists, delete it
     if os.path.exists(MODEL_SAVE_PATH):
-        print("Model already exists. Skipping training.")
-        return
+        print("Old model found. Deleting it...")
+        # Remove the directory (if model is saved in the native Keras format as a directory)
+        os.remove(MODEL_SAVE_PATH)
 
     model = create_model(num_classes)
     model.compile(
@@ -32,8 +33,9 @@ def main():
 
     # Create directory if it doesn't exist
     os.makedirs(os.path.dirname(MODEL_SAVE_PATH), exist_ok=True)
-    model.save(MODEL_SAVE_PATH + ".keras")
-    print("Training complete. Model saved.")
+    # Save the new model. Ensure you use a supported file extension.
+    model.save(MODEL_SAVE_PATH)
+    print("Training complete. New model saved.")
 
 if __name__ == "__main__":
     main()
