@@ -15,4 +15,4 @@ python predict.py predictionimg/image.jpg to predict the new image
 
 
 
-Latest prediction: dirty with 68.53% confidence
+Latest prediction: dirty with 53.63% confidence
