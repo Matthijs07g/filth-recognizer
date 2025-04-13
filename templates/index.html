@@ -1,0 +1,43 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filth Recognizer</title>
+  <style>
+    .flash { color: red; margin: 10px 0; }
+    .btn { margin: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Filth Recognizer</h1>
+
+  <!-- Display flashed messages -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for msg in messages %}
+        <li class="flash">{{ msg }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <!-- TRAIN MODEL BUTTON -->
+  <form action="{{ url_for('train') }}" method="post">
+    <button type="submit" class="btn">Train Model</button>
+  </form>
+
+  <!-- EVALUATE MODEL BUTTON -->
+  <form action="{{ url_for('evaluate') }}" method="post">
+    <button type="submit" class="btn">Evaluate Model</button>
+  </form>
+
+  <!-- IMAGE UPLOADER FOR PREDICTION -->
+  <h2>Upload Image to Predict</h2>
+  <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="image_file" accept="image/*" required>
+    <button type="submit" class="btn">Predict</button>
+  </form>
+</body>
+</html>
